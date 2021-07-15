@@ -1,4 +1,7 @@
 # LCA-LK-2021-ML course
+[![](https://img.shields.io/badge/language-python-blue.svg)](https://github.com/Lan-ce-lot)
+![](https://img.shields.io/badge/license-Apache-blue.svg)
+![GitHub branch checks state](https://img.shields.io/github/checks-status/lan-ce-lot/pythorch_text_classification/master?logoColor=blue)
 
 ## 1 Classification
 

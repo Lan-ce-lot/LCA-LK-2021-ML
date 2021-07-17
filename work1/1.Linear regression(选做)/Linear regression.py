@@ -11,7 +11,7 @@ def dataProcess(df):
     # 将数据集拆分为多个数据帧
     for i in range(0, 4320, 18):
         for j in range(24-9):
-            mat = array[i:i+18, j:j+9]
+            mat = array[i+9, j:j+9]
             label = array[i+9, j+9] # 第10行是PM2.5
             x_list.append(mat)
             y_list.append(label)
@@ -40,9 +40,9 @@ def train(x_train, y_train, epoch):
         w_g = np.zeros(9)
         # 在所有数据上计算Loss_label的梯度
         for j in range(3200):
-            b_g += (y_train[j] - weights.dot(x_train[j, 9, :]) - bias) * (-1)
+            b_g += (y_train[j] - weights.dot(x_train[j, :]) - bias) * (-1)
             for k in range(9):
-                w_g[k] += (y_train[j] - weights.dot(x_train[j, 9, :]) - bias) * (-x_train[j, 9, k])
+                w_g[k] += (y_train[j] - weights.dot(x_train[j, :]) - bias) * (-x_train[j, k])
         # 求平均
         b_g /= 3200
         w_g /= 3200
@@ -61,7 +61,7 @@ def train(x_train, y_train, epoch):
         if i%200 == 0:
             loss = 0
             for j in range(3200):
-                loss += (y_train[j] - weights.dot(x_train[j, 9, :]) - bias)**2
+                loss += (y_train[j] - weights.dot(x_train[j, :]) - bias)**2
             print('after {} epochs, the loss on train data is:'.format(i), loss/3200)
 
     return weights, bias
@@ -70,7 +70,7 @@ def train(x_train, y_train, epoch):
 def validate(x_val, y_val, weights, bias):
     loss = 0
     for i in range(400):
-        loss += (y_val[i] - weights.dot(x_val[i, 9, :]) - bias)**2
+        loss += (y_val[i] - weights.dot(x_val[i, :]) - bias)**2
     return loss / 400
 
 def main():
@@ -86,6 +86,8 @@ def main():
     # 在验证集上看效果
     loss = validate(x_val, y_val, w, b)
     print('The loss on val data is:', loss)
+    print(w.dot(x_train[0, :]) + b)
+    print(y_train[0])
 
 if __name__ == '__main__':
     main()

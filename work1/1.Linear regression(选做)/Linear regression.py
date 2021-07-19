@@ -47,8 +47,8 @@ def train(x_train, y_train, epoch):
         b_g /= 3200
         w_g /= 3200
         #  加上Loss_regularization在w上的梯度
-        for m in range(9):
-            w_g[m] += reg_rate * weights[m]
+        # for m in range(9):
+        #     w_g[m] += reg_rate * weights[m]
 
         # adagrad
         bg2_sum += b_g**2

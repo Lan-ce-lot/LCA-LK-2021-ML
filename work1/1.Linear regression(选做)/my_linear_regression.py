@@ -84,15 +84,15 @@ def train(x_train, y_train, epochs):
         w_g = np.zeros(9)
         # 在所有数据上计算Loss_label的梯度
         for j in range(3200):
-            b_g += (y_train[j] - weights.dot(x_train[j, 9, :]) - bias) * (-1)
+            b_g += 2 * (y_train[j] - weights.dot(x_train[j, 9, :]) - bias) * (-1)
             for k in range(9):
-                w_g[k] += (y_train[j] - weights.dot(x_train[j, 9, :]) - bias) * (-x_train[j, 9, k])
+                w_g[k] += 2 * (y_train[j] - weights.dot(x_train[j, 9, :]) - bias) * (-x_train[j, 9, k])
         # 求平均
         b_g /= 3200
         w_g /= 3200
         #  加上Loss_regularization在w上的梯度
-        for m in range(9):
-            w_g[m] += reg_rate * weights[m]
+        # for m in range(9):
+        #     w_g[m] += reg_rate * weights[m]
 
         # adagrad
         bg2_sum += b_g ** 2

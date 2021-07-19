@@ -4,7 +4,7 @@
 ![GitHub branch checks state](https://img.shields.io/github/checks-status/lan-ce-lot/pythorch_text_classification/master?logoColor=blue)
 
 ## 1 Classification
-
+[](/work1/1.Linear%20regression(选做)/报告.md)
 ## 2 CNN
 
 ## 3 Word embedding
